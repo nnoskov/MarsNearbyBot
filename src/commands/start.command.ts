@@ -11,7 +11,7 @@ export class StartCommand extends Command {
 
   handle(): void {
     this.bot.start((ctx) => {
-      console.log(ctx);
+      console.log(ctx.session);
       ctx.reply("Welcome to Mars Nearby bot!", {
         reply_markup: {
           keyboard: [["Increment by 5"], ["Deposit 0.01"], ["Withdrawal 0.02"]],
