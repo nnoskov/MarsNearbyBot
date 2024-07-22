@@ -153,16 +153,20 @@ export class StartCommand extends Command {
       let txtBody = "";
       try {
         txtBody = readFileSync("./public/data/text/about.htm", "utf8");
+        await ctx.answerCbQuery();
+        await ctx.replyWithPhoto(
+          { source: "./public/data/media/rover.jpg" },
+          { caption: "My caption with differ symbol $TON as example" }
+        );
+        await ctx.replyWithHTML(
+          `<b>${txtHeader}</b>\n${txtBody}`,
+          Markup.inlineKeyboard([
+            Markup.button.webApp("Start testing", "https://marsnearby.fun"),
+          ])
+        );
       } catch (error) {
         console.log(error);
       }
-
-      await ctx.replyWithHTML(
-        `<b>${txtHeader}</b>\n${txtBody}`,
-        Markup.inlineKeyboard([
-          Markup.button.webApp("Start testing", "https://marsnearby.fun"),
-        ])
-      );
     });
   }
 }
